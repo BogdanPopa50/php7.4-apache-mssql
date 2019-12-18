@@ -1,2 +1,12 @@
 # php7.4-apache-mssql
-Dockerfile for php7.4 apache mssql (driver version 5.6) msodbcsql17 sqlsrv pdo-sqlsrv
+Dockerfile to setup 
+Based on php:7.4-apache
+- apache
+- php7.4
+- mssql (driver version 5.6)
+- msodbcsql17
+- sqlsrv
+- pdo-sqlsrv
+
+Workdir - /var/www/html
+
