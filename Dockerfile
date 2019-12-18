@@ -17,6 +17,7 @@ RUN apt-get update -yqq \
         && echo "en_US.UTF-8 zh_CN.UTF-8 UTF-8" > /etc/locale.gen \
         && locale-gen
 
+# Install pdo_sqlsrv and sqlsrv
 RUN pecl install -f pdo_sqlsrv-${MSSQL_DRIVER_VER} sqlsrv-${MSSQL_DRIVER_VER} \
         && docker-php-ext-enable pdo_sqlsrv sqlsrv
 
