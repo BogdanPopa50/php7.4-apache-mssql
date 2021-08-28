@@ -1,11 +1,23 @@
+#The last docker image is based on Debian GNU/Linux 11 (bullseye) and at this moment multiarch-support is missing.
+#We need multiarch-support so we must install it.
+#sqlsrv version is updated to 5.9
+
 FROM php:7.4-apache
 
 MAINTAINER Sonal Bendle <sonal.bendle@gmail.com>
 
 RUN a2enmod rewrite
+RUN apt-get update
+
+
+#multiarch-support is missing in debian 11
+RUN apt-get install -y curl git apt-transport-https gnupg wget  lsb-release   ca-certificates  apt-utils
+RUN wget http://ftp.br.debian.org/debian/pool/main/g/glibc/multiarch-support_2.28-10_amd64.deb -P /tmp
+RUN apt-get install  /tmp/multiarch-support_2.28-10_amd64.deb
+
 
 # MSSQL drivers version
-ARG MSSQL_DRIVER_VER=5.6
+ARG MSSQL_DRIVER_VER=5.9
 
 # Install the PHP Driver for SQL Server
 RUN apt-get update -yqq \
